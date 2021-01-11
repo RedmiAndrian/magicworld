@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://src/scenes/LevelTemplate.tres" type="TileSet" id=1]
+[ext_resource path="res://LevelTemplate.tres" type="TileSet" id=1]
 [ext_resource path="res://src/scenes/Mage.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/scenes/Slime.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/scenes/Monster.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/scripts/GridContainer.gd" type="Script" id=5]
 
-[node name="Level02" type="Node"]
+
+[node name="Level" type="Node"]
 
 [node name="Mage" parent="." instance=ExtResource( 2 )]
 position = Vector2( 123.627, 345.753 )
@@ -32,3 +34,23 @@ position = Vector2( 1195.65, 242.726 )
 
 [node name="Monster" parent="." instance=ExtResource( 4 )]
 position = Vector2( 918.843, 940.084 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control"]
+margin_left = 4.11092
+margin_top = 520.9
+margin_right = 82.1109
+margin_bottom = 595.9
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/Panel"]
+margin_right = 78.0
+margin_bottom = 75.0
+script = ExtResource( 5 )

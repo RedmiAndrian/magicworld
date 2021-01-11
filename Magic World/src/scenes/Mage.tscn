@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/mage/mage.png" type="Texture" id=1]
+[ext_resource path="res://assets/mage/mainCharacter.png" type="Texture" id=1]
 [ext_resource path="res://src/scripts/Mage.gd" type="Script" id=2]
 [ext_resource path="res://src/scenes/Area2D.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/mage/mageshoot.png" type="Texture" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -11,17 +10,13 @@ animations = [ {
 "loop": true,
 "name": "idle",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": false,
-"name": "shoot",
-"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 25.5, 61 )
+extents = Vector2( 17.9757, 32.2853 )
 
 [node name="Mage" type="KinematicBody2D"]
+collision_mask = 14
 script = ExtResource( 2 )
 Bullet = ExtResource( 3 )
 
@@ -31,17 +26,16 @@ animation = "idle"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.0157471, 0 )
+position = Vector2( 2.63291, -2.64867 )
 shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 1.5, 1.5 )
+zoom = Vector2( 1.2, 1.2 )
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 smoothing_enabled = true
 smoothing_speed = 10.0
 
 [node name="Position2D" type="Position2D" parent="."]
-position = Vector2( 72.4901, 0 )
-[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+position = Vector2( 33.7031, 0 )
