@@ -20,6 +20,8 @@ func _ready():
 	velocity.x = 100
 
 func _physics_process(delta):
+	if health <= 0:
+		queue_free()
 	velocity.y += 3000 * delta
 	if isright:
 		set_direction(DIRECTION_RIGHT)
@@ -28,6 +30,7 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity)
 
 func _on_FloorDetector_body_exited(body):
+	print("no")
 	if isright:
 		isright = false
 	elif !isright:

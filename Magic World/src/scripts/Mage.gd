@@ -9,20 +9,22 @@ const DIRECTION_RIGHT = 1
 const DIRECTION_LEFT = -1
 var direction = Vector2(DIRECTION_RIGHT, 1)
 
+var inventory_resource = load("res://src/scripts/Inventory.gd")
+var inventory = inventory_resource.new()
+
 func _ready() -> void:
 	add_to_group("Player")
 	$AnimatedSprite.play("idle")
 
 func set_direction(hor_direction):
 	if hor_direction == 0:
-		hor_direction = DIRECTION_LEFT # default to right if param is 0
+		hor_direction = DIRECTION_RIGHT # default to right if param is 0
 	var hor_dir_mod = hor_direction / abs(hor_direction) # get unit direction
 	apply_scale(Vector2(hor_dir_mod * direction.x, 1)) # flip
 	direction = Vector2(hor_dir_mod, direction.y) # update direction
 	
 	
 func shoot() -> void:
-	$AnimatedSprite.play("shoot")
 	var b = Bullet.instance()
 	owner.add_child(b)
 	b.transform = $Position2D.global_transform
@@ -50,7 +52,3 @@ func _physics_process(delta):
 		
 	velocity = move_and_slide(velocity, FLOOR_NORMAL)
 
-
-func _on_AnimatedSprite_animation_finished():
-	if $AnimatedSprite.animation == "shoot":
-		$AnimatedSprite.play("idle")
